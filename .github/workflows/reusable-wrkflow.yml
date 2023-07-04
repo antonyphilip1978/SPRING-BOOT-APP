@@ -8,11 +8,6 @@ on:
         type: string
           
 jobs:
-    triage:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-
     self-approval-check:    
       runs-on: ubuntu-latest
       environment: production
