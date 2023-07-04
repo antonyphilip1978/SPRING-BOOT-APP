@@ -2,16 +2,19 @@ name: Reusable workflow example
 
 on:
   workflow_call:
-
+    inputs:
+      config-path:
+        required: true
+        type: string
+    secrets:
+        token:
+          required: true
+          
 jobs:
-    setup-checkout:
-        name: checkout
-        runs-on: ubuntu-latest
-          
-        permissions:
-          contents: 'read'
-          id-token: 'write'
-          
-        steps:
-        - name: Checkout
-          uses: actions/checkout@v3
+    triage:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/labeler@v4
+        with:
+          repo-token: ${{ secrets.token }}
+          configuration-path: ${{ inputs.config-path }}
