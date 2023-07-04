@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: antonyphilip1978/SPRING-BOOT-APP/.github/workflows/reusable-workflow.yml@main
+    - uses: antonyphilip1978/SPRING-BOOT-APP/.github/workflows/reusable-wrkflow.yml@main
 
   build222:
     runs-on: ubuntu-latest
