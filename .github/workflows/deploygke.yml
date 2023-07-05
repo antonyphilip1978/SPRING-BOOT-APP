@@ -47,8 +47,20 @@ jobs:
         workload_identity_provider: 'projects/1011182849385/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
         service_account: 'gh-action-runner-sa@reference-glass-301810.iam.gserviceaccount.com'
 
+    - name: Building and pushing the image
+      uses: ./
+        # uses: RafikFarhad/push-to-gcr-github-action@v5-beta # <- use this on your workflow
+      with:
+        # gcloud_service_key: ${{ secrets.JSON_GCLOUD_SERVICE_ACCOUNT_JSON }} # <- not needed when used with google-github-actions/auth@v0
+        registry: gcr.io
+        project_id: pro-chesta
+        image_name: hello-world-by-push-to-gcr-0
+        image_tag: test-${{ github.sha }}, ${{ github.sha }}
+        dockerfile: ./test/Dockerfile.test
+        context: ./test
+        target: build
 
-        
+
 
     - name: Docker configuration
       run: |-
