@@ -65,11 +65,11 @@ jobs:
       with:
         # gcloud_service_key: ${{ secrets.JSON_GCLOUD_SERVICE_ACCOUNT_JSON }} # <- not needed when used with google-github-actions/auth@v0
         registry: gcr.io
-        project_id: pro-chesta
+        project_id: reference-glass-301810
         image_name: hello-world-by-push-to-gcr-0
         image_tag: test-${{ github.sha }}, ${{ github.sha }}
-        dockerfile: ./test/Dockerfile.test
-        context: ./test
+        dockerfile: ./Dockerfile
+        context: ./
         target: build
 
 
