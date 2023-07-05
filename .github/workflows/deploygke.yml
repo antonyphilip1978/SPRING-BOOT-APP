@@ -47,6 +47,18 @@ jobs:
         workload_identity_provider: 'projects/1011182849385/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
         service_account: 'gh-action-runner-sa@reference-glass-301810.iam.gserviceaccount.com'
 
+    - uses: actions/checkout@v3
+     
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+    
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+
     - name: Building and pushing the image
       uses: ./
         # uses: RafikFarhad/push-to-gcr-github-action@v5-beta # <- use this on your workflow
