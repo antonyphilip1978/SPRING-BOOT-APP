@@ -14,7 +14,7 @@ name: Build and Deploy to GKE
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "maixxxn" ]
 
 env:
   PROJECT_ID: reference-glass-301810
@@ -22,7 +22,7 @@ env:
   GKE_CLUSTER: cluster-1    # TODO: update to cluster name
   GKE_ZONE: us-central1-c   # TODO: update to cluster zone
   DEPLOYMENT_NAME: gke-test # TODO: update to deployment name
-  REPOSITORY: samples # TODO: update to Artifact Registry docker repository
+  REPOSITORY: pest-image-repo # TODO: update to Artifact Registry docker repository
   IMAGE: static-site
 
 jobs:
@@ -63,7 +63,7 @@ jobs:
       uses: ./
         # uses: RafikFarhad/push-to-gcr-github-action@v5-beta # <- use this on your workflow
       with:
-        # gcloud_service_key: ${{ secrets.JSON_GCLOUD_SERVICE_ACCOUNT_JSON }} # <- not needed when used with google-github-actions/auth@v0
+        gcloud_service_key: ${{ secrets.JSON_GCLOUD_SERVICE_ACCOUNT_JSON }} # <- not needed when used with google-github-actions/auth@v0
         registry: gcr.io
         project_id: reference-glass-301810
         image_name: hello-world-by-push-to-gcr-0
