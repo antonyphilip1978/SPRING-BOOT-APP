@@ -7,10 +7,10 @@ on:
 
 env:
   PROJECT_ID: reference-glass-301810
-  GKE_CLUSTER: github-actions-gke
+  GKE_CLUSTER: pest-gke-autopilot-cluster-1
   GKE_ZONE: us-central1-c
   DEPLOYMENT_NAME: github-actions-gke
-  IMAGE: github-actions-gke-image
+  IMAGE: pest-image-repo
   TAG: 1.0.0
 
 jobs:
@@ -45,7 +45,9 @@ jobs:
         run: |-
           gcloud --quiet auth configure-docker
 
-
+      - name: Get GKE Credentials
+        run: |-
+          gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
 
       - name: Build Docker Image
         run: |-
@@ -55,9 +57,7 @@ jobs:
         run: |-
           docker push "gcr.io/$PROJECT_ID/$IMAGE:$TAG"
 
-      - name: Get GKE Credentials
-        run: |-
-          gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+
 
       - name: Set up Kustomize
         run: |-
