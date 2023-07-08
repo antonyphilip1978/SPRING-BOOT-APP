@@ -8,7 +8,7 @@ on:
 env:
   PROJECT_ID: reference-glass-301810
   GKE_CLUSTER: pest-gke-autopilot-cluster-1
-  GKE_ZONE: us-central1-c
+  GKE_ZONE: us-central1
   DEPLOYMENT_NAME: github-actions-gke
   IMAGE: pest-image-repo
   TAG: 1.0.0
