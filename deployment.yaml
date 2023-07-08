@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: github-actions-gke
+  name: spring-boot-docker
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: github-actions-gke
+      app: spring-boot-docker
   template:
     metadata:
       labels:
-        app: github-actions-gke
+        app: spring-boot-docker
     spec:
       containers:
         - name: app
