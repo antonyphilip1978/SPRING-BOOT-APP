@@ -66,6 +66,9 @@ jobs:
 
       - name: Deploy Image to GKE cluster
         run: |-
+          export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+          gcloud --quiet components install gke-gcloud-auth-plugin
+          gke-gcloud-auth-plugin --version    
           ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IMAGE:$TAG
           ./kustomize build . | kubectl apply -f -
           kubectl rollout status deployment/$DEPLOYMENT_NAME
