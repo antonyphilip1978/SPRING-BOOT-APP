@@ -1,8 +1,9 @@
 name: stratergy work flow
 
 on:
-  workflow_call:
-          
+  issues:
+    types:
+      - opened   
 jobs:
     self-approval-check:    
       runs-on: ubuntu-latest
