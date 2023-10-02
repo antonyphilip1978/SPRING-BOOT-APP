@@ -14,15 +14,16 @@ jobs:
           service_account: [ifd, ift, dbc]
           include:
             - service_account: 'ifd'
-              project: asdf 
+              project: developer 
             - service_account: 'ift'
-              project: asdf 
+              project: tester 
             - service_account: 'dbc'
-              project: asdf 
+              project: produser 
       steps:
         - id: copy
           name: hello
           run: |-
             echo ${{ matrix.service_account }}
+            echo ${{ matrix.project }}
 
             
