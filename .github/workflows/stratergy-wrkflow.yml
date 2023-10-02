@@ -10,7 +10,7 @@ jobs:
     self-approval-check:    
       runs-on: ubuntu-latest
       outputs:
-        matrix: ${{ steps.set-matrix.outputs.matrix }}
+        matrix_1: ${{ steps.set-matrix.outputs.matrix }}
       strategy:
         matrix:
           service_account: [ifd, ift, dbc]
@@ -32,9 +32,7 @@ jobs:
     job2:
         needs: self-approval-check
         runs-on: ubuntu-latest
-        strategy:
-          matrix: ${{ fromJSON(needs.self-approval-check.outputs.matrix) }}
         steps:
           - run: |-
-              echo ${{ fromJSON(needs.self-approval-check.outputs.matrix)['foo'] }}
+              echo ${{ fromJSON(needs.self-approval-check.outputs.matrix_1)['foo'] }}
             
