@@ -34,5 +34,5 @@ jobs:
         runs-on: ubuntu-latest
         steps:
           - run: |-
-              echo ${{ fromJSON(needs.self-approval-check.outputs.matrix_1)['foo'] }}
+              echo ${{ fromJSON(needs.self-approval-check.outputs.matrix_1) }}
             
