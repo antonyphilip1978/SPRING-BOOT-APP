@@ -1,9 +1,11 @@
 name: stratergy work flow
 
 on:
-  issues:
-    types:
-      - opened   
+  workflow_dispatch:
+      inputs:
+        opened:
+          description: hello
+          required: true
 jobs:
     self-approval-check:    
       runs-on: ubuntu-latest
