@@ -9,30 +9,20 @@ on:
 jobs:
     self-approval-check:    
       runs-on: ubuntu-latest
-      outputs:
-        matrix_1: ${{ steps.set-matrix.outputs.matrix }}
       strategy:
         matrix:
-          service_account: [ifd, ift, dbc]
+          service_account: [secret/ifd, secret/ift, secret/dbc]
           include:
-            - service_account: 'ifd'
+            - service_account: secret/ifd
               project: developer 
-            - service_account: 'ift'
+            - service_account: secret/ift
               project: tester 
-            - service_account: 'dbc'
+            - service_account: secret/dbc
               project: produser 
       steps:
-        - id: set-matrix
-          run: echo "{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
         - id: copy
           name: hello
           run: |-
             echo ${{ matrix.service_account }}
             echo ${{ matrix.project }}
-    job2:
-        needs: self-approval-check
-        runs-on: ubuntu-latest
-        steps:
-          - run: |-
-              echo ${{ fromJSON(needs.self-approval-check.outputs.matrix_1) }}
             
