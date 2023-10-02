@@ -23,7 +23,7 @@ jobs:
               project: produser 
       steps:
         - id: set-matrix
-          run: echo "matrix={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
+          run: echo "{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
         - id: copy
           name: hello
           run: |-
@@ -32,9 +32,7 @@ jobs:
     job2:
         needs: self-approval-check
         runs-on: ubuntu-latest
-        strategy:
-          matrix: ${{ fromJSON(needs.self-approval-check.outputs.matrix) }}
         steps:
           - run: |-
-              echo ${{ matrix}}
+              echo ${{ fromJSON(needs.self-approval-check.outputs.matrix) }}
             
